@@ -1,8 +1,8 @@
-# Blood Stone
+# Bloodstone
 
-> Blood Stone is a new rock/metal band forged in Middelburg, Netherlands, currently seeking a lead vocalist.
+> Bloodstone is a new rock/metal band forged in Middelburg, Netherlands, currently seeking a lead vocalist.
 
-Blood Stone draws its sound and visual identity from the intensity and precision of Damascus steel. The site's purpose is to introduce the band, let visitors stream demo tracks, and recruit a lead vocalist.
+Bloodstone draws its sound and visual identity from the intensity and precision of Damascus steel. The site's purpose is to introduce the band, let visitors stream demo tracks, and recruit a lead vocalist.
 
 ## Content
 
