@@ -337,8 +337,7 @@
 <div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto space-y-12 md:space-y-0">
 <!-- Footer Logo/Brand -->
 <div class="flex flex-col items-center md:items-start space-y-4">
-<img alt="Bloodstone" class="h-8 filter opacity-80" src="images/new-logo-bloodstone.png"/>
-<p class="font-label-sm text-label-sm text-on-secondary-container tracking-widest" data-i18n="footer">© 2024 BLOODSTONE. ALLE RECHTEN VOORBEHOUDEN. GESMEED IN CHAOS.</p>
+<p class="font-label-sm text-label-sm text-on-secondary-container tracking-widest" data-i18n="footer">© 2026 BLOODSTONE. ALLE RECHTEN VOORBEHOUDEN. GESMEED IN CHAOS.</p>
 </div>
 </div>
 </footer>
@@ -369,7 +368,7 @@
                 f_name: 'Naam', f_name_ph: 'Vul je naam in...', f_email: 'E-mailadres', f_email_ph: 'Waar kunnen we je bereiken?',
                 f_phone: 'Telefoonnummer', f_demo: 'Demo Link <span class="text-white/40 normal-case tracking-normal">(optioneel)</span>',
                 f_msg: 'Waarom hoor jij bij ons?', f_msg_ph: 'Bewijs je kracht...', f_submit: 'STUUR JE AANMELDING',
-                footer: '© 2024 BLOODSTONE. ALLE RECHTEN VOORBEHOUDEN. GESMEED IN CHAOS.'
+                footer: '© {year} BLOODSTONE. ALLE RECHTEN VOORBEHOUDEN. GESMEED IN CHAOS.'
             },
             en: {
                 doc_title: 'Bloodstone | Metal Band from Middelburg – Singer Wanted',
@@ -395,7 +394,7 @@
                 f_name: 'Name', f_name_ph: 'Enter your name...', f_email: 'Email address', f_email_ph: 'Where can we reach you?',
                 f_phone: 'Phone number', f_demo: 'Demo Link <span class="text-white/40 normal-case tracking-normal">(optional)</span>',
                 f_msg: 'Why do you belong with us?', f_msg_ph: 'Prove your strength...', f_submit: 'SEND YOUR APPLICATION',
-                footer: '© 2024 BLOODSTONE. ALL RIGHTS RESERVED. FORGED IN CHAOS.'
+                footer: '© {year} BLOODSTONE. ALL RIGHTS RESERVED. FORGED IN CHAOS.'
             }
         };
 
@@ -409,7 +408,8 @@
 
         function t(key, el) {
             const str = (I18N[currentLang] && I18N[currentLang][key]) || I18N.nl[key] || key;
-            return el && el.dataset.title ? str.replace('{title}', el.dataset.title) : str;
+            const out = str.replace('{year}', new Date().getFullYear());
+            return el && el.dataset.title ? out.replace('{title}', el.dataset.title) : out;
         }
 
         function setLang(lang) {
