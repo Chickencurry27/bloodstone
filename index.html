@@ -97,6 +97,18 @@
             scroll-behavior: smooth;
         }
 
+        .lang-btn {
+            color: rgba(229, 226, 225, 0.5);
+            padding: 4px 8px;
+            letter-spacing: 0.15em;
+            transition: color 0.3s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn[aria-pressed="true"] {
+            color: #ffb4a8;
+        }
+
         .skip-link {
             position: absolute;
             left: -9999px;
@@ -118,7 +130,7 @@
     </style>
 </head>
 <body class="font-body-md text-on-background selection:bg-primary-container selection:text-white">
-<a class="skip-link" href="#hero">Ga naar hoofdinhoud</a>
+<a class="skip-link" data-i18n="skip" href="#hero">Ga naar hoofdinhoud</a>
 <div class="damascus-overlay"></div>
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/10 bg-background/80">
@@ -129,28 +141,29 @@
 </a>
 <!-- Navigation Links -->
 <div class="hidden md:flex items-center space-x-12">
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" href="#who-we-are">Wie Wij Zijn</a>
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" href="#transmissions">Onze Muziek</a>
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" href="#ritual">De Werving</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" data-i18n="nav_who" href="#who-we-are">Wie Wij Zijn</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" data-i18n="nav_music" href="#transmissions">Onze Muziek</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" data-i18n="nav_recruit" href="#ritual">De Werving</a>
 </div>
 <!-- Trailing Action -->
-<div class="flex items-center gap-3">
-<a class="bg-primary-container text-white px-8 py-2.5 font-label-sm text-label-sm uppercase tracking-widest sanguine-glow transition-all duration-300 active:scale-95 hidden sm:inline-block" href="#transmissions">
-            Luister Nu
-        </a>
-<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Navigatiemenu wisselen" class="md:hidden text-on-surface p-2 -mr-2" id="mobile-menu-btn">
+<div class="flex items-center gap-5">
+<div aria-label="Taal" class="lang-switch flex items-center font-label-sm text-label-sm uppercase tracking-widest" data-i18n-attrs="aria-label:lang_label" role="group">
+<button aria-pressed="true" class="lang-btn" data-lang="nl" type="button">NL</button>
+<span class="text-white/20" aria-hidden="true">/</span>
+<button aria-pressed="false" class="lang-btn" data-lang="en" type="button">EN</button>
+</div>
+<a class="bg-primary-container text-white px-8 py-2.5 font-label-sm text-label-sm uppercase tracking-widest sanguine-glow transition-all duration-300 active:scale-95 hidden sm:inline-block" data-i18n="nav_listen" href="#transmissions">Luister Nu</a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Navigatiemenu wisselen" data-i18n-attrs="aria-label:menu_toggle" class="md:hidden text-on-surface p-2 -mr-2" id="mobile-menu-btn">
 <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
 </button>
 </div>
 </div>
 <!-- Mobile Navigation Menu -->
 <div class="hidden flex-col items-center gap-8 py-10 absolute top-full inset-x-0 bg-background/95 backdrop-blur-xl border-t border-white/10 md:hidden" id="mobile-menu">
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" href="#who-we-are">Wie Wij Zijn</a>
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" href="#transmissions">Onze Muziek</a>
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" href="#ritual">De Werving</a>
-<a class="bg-primary-container text-white px-10 py-3 font-label-sm text-label-sm uppercase tracking-widest sanguine-glow transition-all duration-300 active:scale-95 sm:hidden" href="#transmissions">
-            Luister Nu
-        </a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" data-i18n="nav_who" href="#who-we-are">Wie Wij Zijn</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" data-i18n="nav_music" href="#transmissions">Onze Muziek</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all duration-300" data-i18n="nav_recruit" href="#ritual">De Werving</a>
+<a class="bg-primary-container text-white px-10 py-3 font-label-sm text-label-sm uppercase tracking-widest sanguine-glow transition-all duration-300 active:scale-95 sm:hidden" data-i18n="nav_listen" href="#transmissions">Luister Nu</a>
 </div>
 </nav>
 <!-- Hero Section -->
@@ -159,15 +172,13 @@
 <h1 class="mb-8 flex justify-center">
 <img alt="Bloodstone" class="w-64 md:w-96 object-contain filter brightness-110 drop-shadow-[0_0_20px_rgba(139,0,0,0.5)]" src="images/new-logo-bloodstone.png"/>
 </h1>
-<p class="font-label-sm text-label-sm uppercase tracking-[0.4em] text-primary mb-12 opacity-80">We zijn op zoek naar een zanger</p>
+<p class="font-label-sm text-label-sm uppercase tracking-[0.4em] text-primary mb-12 opacity-80" data-i18n="hero_tag">We zijn op zoek naar een zanger</p>
 <div class="flex flex-col sm:flex-row items-center gap-6">
-<a class="w-full sm:w-auto bg-primary-container text-white px-10 py-5 font-label-sm text-label-sm uppercase tracking-[0.2em] sanguine-glow transition-all duration-500" href="#transmissions">Luister onze muziek</a>
-<a class="w-full sm:w-auto bg-transparent text-white border border-white/20 px-10 py-5 font-label-sm text-label-sm uppercase tracking-[0.2em] hover:bg-white/5 transition-all duration-500" href="#ritual">
-                Meld je aan
-            </a>
+<a class="w-full sm:w-auto bg-primary-container text-white px-10 py-5 font-label-sm text-label-sm uppercase tracking-[0.2em] sanguine-glow transition-all duration-500" data-i18n="hero_listen" href="#transmissions">Luister onze muziek</a>
+<a class="w-full sm:w-auto bg-transparent text-white border border-white/20 px-10 py-5 font-label-sm text-label-sm uppercase tracking-[0.2em] hover:bg-white/5 transition-all duration-500" data-i18n="hero_apply" href="#ritual">Meld je aan</a>
 </div>
 </div>
-<a aria-label="Scroll naar volgende sectie" class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-30 hover:opacity-70 animate-bounce transition-opacity duration-300" href="#who-we-are">
+<a aria-label="Scroll naar volgende sectie" data-i18n-attrs="aria-label:scroll_next" class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-30 hover:opacity-70 animate-bounce transition-opacity duration-300" href="#who-we-are">
 <span class="material-symbols-outlined text-3xl">keyboard_double_arrow_down</span>
 </a>
 </main>
@@ -175,17 +186,20 @@
 <section class="py-32 px-gutter relative overflow-hidden" id="who-we-are">
 <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 <div>
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.4em] mb-6 block">De Formatie</span>
-<h2 class="font-display-xl text-4xl md:text-6xl uppercase leading-none mb-8">WIE WIJ <span class="text-primary">ZIJN</span></h2>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.4em] mb-6 block" data-i18n="who_kicker">De Formatie</span>
+<h2 class="font-display-xl text-4xl md:text-6xl uppercase leading-none mb-8" data-i18n-html="who_title">WIE WIJ <span class="text-primary">ZIJN</span></h2>
 <div class="h-px w-24 bg-primary/50 mb-8"></div>
-<p class="font-body-md text-on-surface-variant text-lg leading-relaxed max-w-xl">Bloodstone maakt uitsluitend originele muziek zonder genre-grenzen. We combineren de brute kracht van rock en metal met de complexiteit van fusion tot een verfrissend, eigen geluid. Verwacht strakke riffs, onverwachte ritmes en een sound die staat als een huis.</p>
+<div class="space-y-5 font-body-md text-on-surface-variant text-lg leading-relaxed max-w-xl">
+<p data-i18n="who_p1">Wij zijn een formatie uit Zeeland, en zijn op zoek naar een zanger/frontman die bij ons past. De muziek die we maken is een vette mix van rock en metal en meer.</p>
+<p data-i18n="who_p2">Het mooiste -maar ook het uitdagenste- is om eigen werk te maken, in de sfeer die je samen wilt neerzetten. Dat geeft de grootste kick! Wij kiezen niet voor covers en AI, alleen eigen creatie!</p>
+</div>
 </div>
 <div class="relative group">
 <div class="aspect-video bg-surface-container-high border border-white/10 relative overflow-hidden">
-<img alt="Band atmosphere" class="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700" src="images/band-atmosphere.webp"/>
+<img alt="Band atmosphere" data-i18n-attrs="alt:alt_atmosphere" class="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700" src="images/band-atmosphere.webp"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
 <div class="absolute bottom-6 left-6">
-<span class="font-label-sm text-label-sm text-white/60 uppercase tracking-widest">SINDS 2024 / MIDDELBURG</span>
+<span class="font-label-sm text-label-sm text-white/60 uppercase tracking-widest" data-i18n="since">SINDS 2024 / MIDDELBURG</span>
 </div>
 </div>
 <div class="absolute -bottom-4 -right-4 w-32 h-32 border-r-2 border-b-2 border-primary/30 pointer-events-none"></div>
@@ -197,17 +211,18 @@
 <div class="max-w-container-max mx-auto">
 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
 <div>
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.3em] mb-4 block">Geluid</span>
-<h2 class="font-headline-lg uppercase text-4xl md:text-headline-lg">Onze Muziek</h2>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.3em] mb-4 block" data-i18n="music_kicker">Geluid</span>
+<h2 class="font-headline-lg uppercase text-4xl md:text-headline-lg" data-i18n="music_title">Onze Muziek</h2>
 </div>
 <div class="h-px flex-grow bg-gradient-to-r from-primary/30 to-transparent mx-8 hidden md:block"></div>
 </div>
+<p class="font-body-md text-on-surface-variant text-lg leading-relaxed max-w-3xl mb-12" data-i18n="music_intro">Ons streven is om de studio in te gaan en onze muziek live over te brengen op toffe podia. Luister naar een aantal fragmenten van ons eerste werk.</p>
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 <!-- Music Player -->
 <div class="lg:col-span-2 glass-panel p-8 flex flex-col justify-center border border-primary/10" id="player-panel">
 <audio id="audio-el" preload="none"></audio>
 <div class="mb-6 flex items-center gap-4">
-<span class="bg-primary-container px-4 py-1 text-[10px] font-label-sm uppercase tracking-widest">Nu Te Beluisteren</span>
+<span class="bg-primary-container px-4 py-1 text-[10px] font-label-sm uppercase tracking-widest" data-i18n="now_listening">Nu Te Beluisteren</span>
 <div class="h-px flex-grow bg-white/10"></div>
 </div>
 <div class="flex flex-col md:flex-row gap-8 items-center">
@@ -216,45 +231,45 @@
 <span class="material-symbols-outlined absolute inset-0 flex items-center justify-center text-5xl text-primary/70">play_circle</span>
 </div>
 <div class="flex-grow w-full">
-<h3 class="font-label-sm text-primary uppercase tracking-widest mb-2">Nu Speelt</h3>
+<h3 class="font-label-sm text-primary uppercase tracking-widest mb-2" data-i18n="now_playing">Nu Speelt</h3>
 <h4 class="font-headline-lg-mobile text-white uppercase mb-6" id="track-title">Nr1</h4>
 <div class="w-full flex items-center gap-3 mb-6">
 <span class="font-label-sm text-label-sm text-on-surface-variant tabular-nums" id="time-current">0:00</span>
-<input aria-label="Spoelen" class="w-full h-1 accent-[#ffb4a8]" id="seek-bar" max="100" min="0" step="0.1" type="range" value="0"/>
+<input aria-label="Spoelen" data-i18n-attrs="aria-label:seek" class="w-full h-1 accent-[#ffb4a8]" id="seek-bar" max="100" min="0" step="0.1" type="range" value="0"/>
 <span class="font-label-sm text-label-sm text-on-surface-variant tabular-nums" id="time-duration">0:00</span>
 </div>
 <div class="flex items-center gap-6">
-<button aria-label="Willekeurige volgorde" aria-pressed="false" class="material-symbols-outlined text-white/40 hover:text-primary transition-colors" id="shuffle-btn" title="Willekeurige volgorde">shuffle</button>
-<button aria-label="Vorig nummer" class="material-symbols-outlined text-2xl text-white/80 hover:text-primary transition-colors" id="prev-btn" title="Vorige">skip_previous</button>
-<button aria-label="Afspelen" class="material-symbols-outlined text-5xl text-primary hover:scale-110 transition-transform" id="play-btn" title="Afspelen">play_circle</button>
-<button aria-label="Volgend nummer" class="material-symbols-outlined text-2xl text-white/80 hover:text-primary transition-colors" id="next-btn" title="Volgende">skip_next</button>
-<button aria-label="Afspeellijst herhalen" aria-pressed="false" class="material-symbols-outlined text-white/40 hover:text-primary transition-colors" id="repeat-btn" title="Afspeellijst herhalen">repeat</button>
+<button aria-pressed="false" data-i18n-attrs="aria-label:shuffle,title:shuffle" class="material-symbols-outlined text-white/40 hover:text-primary transition-colors" id="shuffle-btn" title="Willekeurige volgorde" aria-label="Willekeurige volgorde">shuffle</button>
+<button data-i18n-attrs="aria-label:prev,title:prev_short" aria-label="Vorig nummer" class="material-symbols-outlined text-2xl text-white/80 hover:text-primary transition-colors" id="prev-btn" title="Vorige">skip_previous</button>
+<button data-i18n-attrs="aria-label:play,title:play" aria-label="Afspelen" class="material-symbols-outlined text-5xl text-primary hover:scale-110 transition-transform" id="play-btn" title="Afspelen">play_circle</button>
+<button data-i18n-attrs="aria-label:next,title:next_short" aria-label="Volgend nummer" class="material-symbols-outlined text-2xl text-white/80 hover:text-primary transition-colors" id="next-btn" title="Volgende">skip_next</button>
+<button aria-pressed="false" data-i18n-attrs="aria-label:repeat,title:repeat" aria-label="Afspeellijst herhalen" class="material-symbols-outlined text-white/40 hover:text-primary transition-colors" id="repeat-btn" title="Afspeellijst herhalen">repeat</button>
 </div>
 </div>
 </div>
 <!-- Tracklist -->
 <div class="mt-8" id="track-list">
-<div aria-label="Speel Nr1" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="0" data-src="music/track-1.mp3" data-title="Nr1" role="button" tabindex="0">
+<div data-i18n-attrs="aria-label:play_track" aria-label="Speel Nr1" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="0" data-src="music/track-1.mp3" data-title="Nr1" role="button" tabindex="0">
 <span class="font-label-sm text-label-sm text-white uppercase tracking-widest group-hover/track:text-primary transition-colors">Nr1</span>
 <span class="material-symbols-outlined text-lg text-white/50 group-hover/track:text-primary transition-colors">play_arrow</span>
 </div>
-<div aria-label="Speel Nr2" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="1" data-src="music/track-2.mp3" data-title="Nr2" role="button" tabindex="0">
+<div data-i18n-attrs="aria-label:play_track" aria-label="Speel Nr2" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="1" data-src="music/track-2.mp3" data-title="Nr2" role="button" tabindex="0">
 <span class="font-label-sm text-label-sm text-white uppercase tracking-widest group-hover/track:text-primary transition-colors">Nr2</span>
 <span class="material-symbols-outlined text-lg text-white/50 group-hover/track:text-primary transition-colors">play_arrow</span>
 </div>
-<div aria-label="Speel Nr3" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="2" data-src="music/track-3.mp3" data-title="Nr3" role="button" tabindex="0">
+<div data-i18n-attrs="aria-label:play_track" aria-label="Speel Nr3" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="2" data-src="music/track-3.mp3" data-title="Nr3" role="button" tabindex="0">
 <span class="font-label-sm text-label-sm text-white uppercase tracking-widest group-hover/track:text-primary transition-colors">Nr3</span>
 <span class="material-symbols-outlined text-lg text-white/50 group-hover/track:text-primary transition-colors">play_arrow</span>
 </div>
-<div aria-label="Speel Nr4" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="3" data-src="music/track-4.mp3" data-title="Nr4" role="button" tabindex="0">
+<div data-i18n-attrs="aria-label:play_track" aria-label="Speel Nr4" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="3" data-src="music/track-4.mp3" data-title="Nr4" role="button" tabindex="0">
 <span class="font-label-sm text-label-sm text-white uppercase tracking-widest group-hover/track:text-primary transition-colors">Nr4</span>
 <span class="material-symbols-outlined text-lg text-white/50 group-hover/track:text-primary transition-colors">play_arrow</span>
 </div>
-<div aria-label="Speel Nr5" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="4" data-src="music/track-5.mp3" data-title="Nr5" role="button" tabindex="0">
+<div data-i18n-attrs="aria-label:play_track" aria-label="Speel Nr5" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track border-b border-white/10 [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="4" data-src="music/track-5.mp3" data-title="Nr5" role="button" tabindex="0">
 <span class="font-label-sm text-label-sm text-white uppercase tracking-widest group-hover/track:text-primary transition-colors">Nr5</span>
 <span class="material-symbols-outlined text-lg text-white/50 group-hover/track:text-primary transition-colors">play_arrow</span>
 </div>
-<div aria-label="Speel Nr6" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="5" data-src="music/track-6.mp3" data-title="Nr6" role="button" tabindex="0">
+<div data-i18n-attrs="aria-label:play_track" aria-label="Speel Nr6" class="flex items-center justify-between py-3 px-2 cursor-pointer group/track [mask-image:linear-gradient(to_right,black_85%,transparent)]" data-index="5" data-src="music/track-6.mp3" data-title="Nr6" role="button" tabindex="0">
 <span class="font-label-sm text-label-sm text-white uppercase tracking-widest group-hover/track:text-primary transition-colors">Nr6</span>
 <span class="material-symbols-outlined text-lg text-white/50 group-hover/track:text-primary transition-colors">play_arrow</span>
 </div>
@@ -263,10 +278,10 @@
 <!-- Gallery Snapshot -->
 <div class="grid grid-rows-2 gap-8">
 <div class="glass-panel border border-white/5 overflow-hidden group">
-<img alt="Band Live" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src="images/band-live.webp"/>
+<img alt="Band Live" data-i18n-attrs="alt:alt_live" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src="images/band-live.webp"/>
 </div>
 <div class="glass-panel border border-white/5 overflow-hidden group">
-<img alt="Factory setting" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src="images/factory-setting.webp"/>
+<img alt="Factory setting" data-i18n-attrs="alt:alt_factory" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src="images/factory-setting.webp"/>
 </div>
 </div>
 </div>
@@ -276,43 +291,43 @@
 <section class="py-32 px-gutter relative" id="ritual">
 <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
 <div class="sticky top-32">
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.4em] mb-6 block">De Werving</span>
-<h2 class="font-display-xl text-5xl md:text-7xl uppercase leading-tight mb-8">PAK DE <span class="text-primary">MICROFOON.</span></h2>
-<p class="font-body-md text-on-surface-variant max-w-lg mb-12 text-lg">Bloodstone is geen doorsnee band; het is een sonische storm ramkoers. Wij doorbreken de stilte met een meedogenloze mix van eigen werk en zoeken een frontman die het podium claimt met pure intensiteit. Is het podium jouw tweede huis? Claim dan je plek aan het front van Bloodstone! Dan is dit jouw podium.</p>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.4em] mb-6 block" data-i18n="rec_kicker">De Werving</span>
+<h2 class="font-display-xl text-5xl md:text-7xl uppercase leading-tight mb-8" data-i18n-html="rec_title">PAK DE <span class="text-primary">MICROFOON.</span></h2>
+<p class="font-body-md text-on-surface-variant max-w-lg mb-12 text-lg" data-i18n="rec_p">Bloodstone is geen doorsnee band; het is een sonische storm ramkoers. Wij doorbreken de stilte met een meedogenloze mix van eigen werk en zoeken een frontman die het podium claimt met pure intensiteit. Is het podium jouw tweede huis? Claim dan je plek aan het front van Bloodstone! Dan is dit jouw podium.</p>
 <div class="flex items-center gap-4 text-primary">
 <span class="material-symbols-outlined text-4xl">mic_external_on</span>
-<span class="font-label-sm uppercase tracking-widest text-sm">Op zoek naar een zanger</span>
+<span class="font-label-sm uppercase tracking-widest text-sm" data-i18n="rec_seek">Op zoek naar een zanger</span>
 </div>
 </div>
 <div class="glass-panel p-8 md:p-12 border border-primary/20">
-<h3 class="font-headline-lg-mobile text-white uppercase mb-8">Solliciteer snel</h3>
+<h3 class="font-headline-lg-mobile text-white uppercase mb-8" data-i18n="form_title">Solliciteer snel</h3>
 <form action="https://formspree.io/f/xwvgyyop" class="space-y-8 font-body-md" method="POST">
 <input name="_subject" type="hidden" value="New Ritual Application - Bloodstone"/>
 <input name="_gotcha" style="display:none" tabindex="-1" type="text"/>
 <div class="space-y-2">
-<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-name">Naam</label>
-<input class="w-full bg-transparent border-0 border-b border-white/20 py-3 font-body-md text-white placeholder-white/10 transition-all focus:border-primary focus:ring-0 focus:bg-white/5" id="field-name" name="name" placeholder="Vul je naam in..." required="" type="text"/>
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-name" data-i18n="f_name">Naam</label>
+<input class="w-full bg-transparent border-0 border-b border-white/20 py-3 font-body-md text-white placeholder-white/10 transition-all focus:border-primary focus:ring-0 focus:bg-white/5" id="field-name" name="name" data-i18n-attrs="placeholder:f_name_ph" placeholder="Vul je naam in..." required="" type="text"/>
 </div>
 <div class="space-y-2">
-<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-email">E-mailadres</label>
-<input class="w-full bg-transparent border-0 border-b border-white/20 py-3 font-body-md text-white placeholder-white/10 transition-all focus:border-primary focus:ring-0 focus:bg-white/5" id="field-email" name="email" placeholder="Waar kunnen we je bereiken?" required="" type="email"/>
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-email" data-i18n="f_email">E-mailadres</label>
+<input class="w-full bg-transparent border-0 border-b border-white/20 py-3 font-body-md text-white placeholder-white/10 transition-all focus:border-primary focus:ring-0 focus:bg-white/5" id="field-email" name="email" data-i18n-attrs="placeholder:f_email_ph" placeholder="Waar kunnen we je bereiken?" required="" type="email"/>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 <div class="space-y-2">
-<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-phone">Telefoonnummer</label>
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-phone" data-i18n="f_phone">Telefoonnummer</label>
 <input class="w-full bg-transparent border-0 border-b border-white/20 py-3 font-body-md text-white placeholder-white/10 transition-all focus:border-primary focus:ring-0 focus:bg-white/5" id="field-phone" name="phone" placeholder="06 12345678" type="tel"/>
 </div>
 <div class="space-y-2">
-<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-demo-link">Demo Link <span class="text-white/40 normal-case tracking-normal">(optioneel)</span></label>
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-demo-link" data-i18n-html="f_demo">Demo Link <span class="text-white/40 normal-case tracking-normal">(optioneel)</span></label>
 <input class="w-full bg-transparent border-0 border-b border-white/20 py-3 font-body-md text-white placeholder-white/10 transition-all focus:border-primary focus:ring-0 focus:bg-white/5" id="field-demo-link" name="demo_link" placeholder="SoundCloud, YouTube, Drive..." type="url"/>
 </div>
 </div>
 <div class="space-y-2">
-<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-message">Waarom hoor jij bij ons?</label>
-<textarea class="w-full bg-transparent border-0 border-b border-white/20 py-3 font-body-md text-white placeholder-white/10 transition-all focus:border-primary focus:ring-0 focus:bg-white/5 resize-none" id="field-message" name="message" placeholder="Bewijs je kracht..." rows="4"></textarea>
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-widest" for="field-message" data-i18n="f_msg">Waarom hoor jij bij ons?</label>
+<textarea class="w-full bg-transparent border-0 border-b border-white/20 py-3 font-body-md text-white placeholder-white/10 transition-all focus:border-primary focus:ring-0 focus:bg-white/5 resize-none" id="field-message" name="message" data-i18n-attrs="placeholder:f_msg_ph" placeholder="Bewijs je kracht..." rows="4"></textarea>
 </div>
 <!-- <p class="font-label-sm text-label-sm text-on-surface-variant leading-relaxed">By submitting, you agree that your name, email and message are sent to Formspree to process this application. We only use it to contact you about the vacancy — questions go to <a class="hover:text-primary transition-colors" href="mailto:info@bloodstone.nl">info@bloodstone.nl</a>.</p> -->
-<button class="w-full bg-primary-container text-white py-5 font-headline-lg-mobile uppercase tracking-tighter sanguine-glow transition-all active:scale-95" type="submit">STUUR JE AANMELDING</button>
+<button class="w-full bg-primary-container text-white py-5 font-headline-lg-mobile uppercase tracking-tighter sanguine-glow transition-all active:scale-95" data-i18n="f_submit" type="submit">STUUR JE AANMELDING</button>
 </form>
 </div>
 </div>
@@ -323,12 +338,103 @@
 <!-- Footer Logo/Brand -->
 <div class="flex flex-col items-center md:items-start space-y-4">
 <img alt="Bloodstone" class="h-8 filter opacity-80" src="images/new-logo-bloodstone.png"/>
-<p class="font-label-sm text-label-sm text-on-secondary-container tracking-widest">
-                © 2024 BLOODSTONE. ALLE RECHTEN VOORBEHOUDEN. GESMEED IN CHAOS.
-            </p>
+<p class="font-label-sm text-label-sm text-on-secondary-container tracking-widest" data-i18n="footer">© 2024 BLOODSTONE. ALLE RECHTEN VOORBEHOUDEN. GESMEED IN CHAOS.</p>
 </div>
 </div>
 </footer>
+<script>
+        // Dutch is the default markup (good for SEO/no-JS); English is applied on demand.
+        const I18N = {
+            nl: {
+                doc_title: 'Bloodstone | Metalband uit Middelburg – Zanger Gezocht',
+                doc_desc: "Bloodstone is een nieuwe rock/metalband gesmeed in Middelburg. Luister naar onze demo's en meld je aan — we zijn op zoek naar onze zanger.",
+                lang_label: 'Taal', menu_toggle: 'Navigatiemenu wisselen', skip: 'Ga naar hoofdinhoud',
+                nav_who: 'Wie Wij Zijn', nav_music: 'Onze Muziek', nav_recruit: 'De Werving', nav_listen: 'Luister Nu',
+                hero_tag: 'We zijn op zoek naar een zanger', hero_listen: 'Luister onze muziek', hero_apply: 'Meld je aan',
+                scroll_next: 'Scroll naar volgende sectie',
+                who_kicker: 'De Formatie', who_title: 'WIE WIJ <span class="text-primary">ZIJN</span>',
+                who_p1: 'Wij zijn een formatie uit Zeeland, en zijn op zoek naar een zanger/frontman die bij ons past. De muziek die we maken is een vette mix van rock en metal en meer.',
+                who_p2: 'Het mooiste -maar ook het uitdagenste- is om eigen werk te maken, in de sfeer die je samen wilt neerzetten. Dat geeft de grootste kick! Wij kiezen niet voor covers en AI, alleen eigen creatie!',
+                alt_atmosphere: 'Sfeerbeeld van de band', since: 'SINDS 2024 / MIDDELBURG',
+                music_kicker: 'Geluid', music_title: 'Onze Muziek',
+                music_intro: 'Ons streven is om de studio in te gaan en onze muziek live over te brengen op toffe podia. Luister naar een aantal fragmenten van ons eerste werk.',
+                now_listening: 'Nu Te Beluisteren', now_playing: 'Nu Speelt',
+                seek: 'Spoelen', shuffle: 'Willekeurige volgorde', prev: 'Vorig nummer', prev_short: 'Vorige',
+                next: 'Volgend nummer', next_short: 'Volgende', repeat: 'Afspeellijst herhalen',
+                play: 'Afspelen', pause: 'Pauzeren', play_track: 'Speel {title}',
+                alt_live: 'Band live', alt_factory: 'Fabriekshal',
+                rec_kicker: 'De Werving', rec_title: 'PAK DE <span class="text-primary">MICROFOON.</span>',
+                rec_p: 'Bloodstone is geen doorsnee band; het is een sonische storm ramkoers. Wij doorbreken de stilte met een meedogenloze mix van eigen werk en zoeken een frontman die het podium claimt met pure intensiteit. Is het podium jouw tweede huis? Claim dan je plek aan het front van Bloodstone! Dan is dit jouw podium.',
+                rec_seek: 'Op zoek naar een zanger', form_title: 'Solliciteer snel',
+                f_name: 'Naam', f_name_ph: 'Vul je naam in...', f_email: 'E-mailadres', f_email_ph: 'Waar kunnen we je bereiken?',
+                f_phone: 'Telefoonnummer', f_demo: 'Demo Link <span class="text-white/40 normal-case tracking-normal">(optioneel)</span>',
+                f_msg: 'Waarom hoor jij bij ons?', f_msg_ph: 'Bewijs je kracht...', f_submit: 'STUUR JE AANMELDING',
+                footer: '© 2024 BLOODSTONE. ALLE RECHTEN VOORBEHOUDEN. GESMEED IN CHAOS.'
+            },
+            en: {
+                doc_title: 'Bloodstone | Metal Band from Middelburg – Singer Wanted',
+                doc_desc: "Bloodstone is a new rock/metal band forged in Middelburg. Listen to our demos and apply — we are looking for our singer.",
+                lang_label: 'Language', menu_toggle: 'Toggle navigation menu', skip: 'Skip to main content',
+                nav_who: 'Who We Are', nav_music: 'Our Music', nav_recruit: 'Recruitment', nav_listen: 'Listen Now',
+                hero_tag: 'We are looking for a singer', hero_listen: 'Listen to our music', hero_apply: 'Apply now',
+                scroll_next: 'Scroll to next section',
+                who_kicker: 'The Band', who_title: 'WHO WE <span class="text-primary">ARE</span>',
+                who_p1: 'We are a band from Zeeland, and we are looking for a singer/frontman who fits us. The music we make is a heavy mix of rock, metal and more.',
+                who_p2: 'The best part – but also the most challenging – is creating our own work, in the atmosphere you want to build together. That gives the biggest kick! We don\'t go for covers and AI, only our own creations!',
+                alt_atmosphere: 'Band atmosphere', since: 'SINCE 2024 / MIDDELBURG',
+                music_kicker: 'Sound', music_title: 'Our Music',
+                music_intro: 'Our goal is to head into the studio and bring our music live to great stages. Listen to a few excerpts of our first work.',
+                now_listening: 'Now Available', now_playing: 'Now Playing',
+                seek: 'Seek', shuffle: 'Shuffle', prev: 'Previous track', prev_short: 'Previous',
+                next: 'Next track', next_short: 'Next', repeat: 'Repeat playlist',
+                play: 'Play', pause: 'Pause', play_track: 'Play {title}',
+                alt_live: 'Band live', alt_factory: 'Factory setting',
+                rec_kicker: 'Recruitment', rec_title: 'GRAB THE <span class="text-primary">MICROPHONE.</span>',
+                rec_p: 'Bloodstone is no ordinary band; it is a sonic storm on a collision course. We break the silence with a relentless mix of original work and are looking for a frontman who claims the stage with pure intensity. Is the stage your second home? Then claim your spot at the front of Bloodstone! This is your stage.',
+                rec_seek: 'Looking for a singer', form_title: 'Apply now',
+                f_name: 'Name', f_name_ph: 'Enter your name...', f_email: 'Email address', f_email_ph: 'Where can we reach you?',
+                f_phone: 'Phone number', f_demo: 'Demo Link <span class="text-white/40 normal-case tracking-normal">(optional)</span>',
+                f_msg: 'Why do you belong with us?', f_msg_ph: 'Prove your strength...', f_submit: 'SEND YOUR APPLICATION',
+                footer: '© 2024 BLOODSTONE. ALL RIGHTS RESERVED. FORGED IN CHAOS.'
+            }
+        };
+
+        // No saved choice yet: Dutch browsers (nl, nl-BE, ...) get Dutch, everyone else English.
+        const preferred = (navigator.languages && navigator.languages[0]) || navigator.language || 'nl';
+        let currentLang = preferred.toLowerCase().startsWith('nl') ? 'nl' : 'en';
+        try {
+            const saved = localStorage.getItem('lang');
+            if (saved === 'nl' || saved === 'en') currentLang = saved;
+        } catch (e) {}
+
+        function t(key, el) {
+            const str = (I18N[currentLang] && I18N[currentLang][key]) || I18N.nl[key] || key;
+            return el && el.dataset.title ? str.replace('{title}', el.dataset.title) : str;
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            try { localStorage.setItem('lang', lang); } catch (e) {}
+            document.documentElement.lang = lang;
+            document.title = t('doc_title');
+            document.querySelectorAll('meta[name="description"]').forEach((m) => m.setAttribute('content', t('doc_desc')));
+            document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
+            document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = t(el.dataset.i18nHtml); });
+            document.querySelectorAll('[data-i18n-attrs]').forEach((el) => {
+                el.dataset.i18nAttrs.split(',').forEach((pair) => {
+                    const [attr, key] = pair.split(':');
+                    el.setAttribute(attr, t(key, el));
+                });
+            });
+            document.querySelectorAll('.lang-btn').forEach((btn) => {
+                btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
+            });
+        }
+
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+            btn.addEventListener('click', () => setLang(btn.dataset.lang));
+        });
+</script>
 <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -397,8 +503,10 @@
 
         function setPlayIcon(isPlaying) {
             playBtn.textContent = isPlaying ? 'pause_circle' : 'play_circle';
-            playBtn.title = isPlaying ? 'Pauzeren' : 'Afspelen';
-            playBtn.setAttribute('aria-label', isPlaying ? 'Pauzeren' : 'Afspelen');
+            const label = t(isPlaying ? 'pause' : 'play');
+            playBtn.title = label;
+            playBtn.setAttribute('aria-label', label);
+            playBtn.dataset.i18nAttrs = isPlaying ? 'aria-label:pause,title:pause' : 'aria-label:play,title:play';
         }
 
         function loadTrack(index, autoplay) {
@@ -513,5 +621,6 @@
         });
 
         highlightActiveTrack();
+        setLang(currentLang);
     </script>
 </body></html>
